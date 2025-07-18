@@ -33,4 +33,4 @@ The project uses ES6 classes (`Todo` and `FormValidator`) to modularize the code
 ## Deployment
 
 This project is deployed on GitHub Pages:  
-[[ADD YOUR DEPLOYED LINK HERE](https://pilotophillip.github.io/se_project_todo-app/)]
+[[Deployment Page](https://pilotophillip.github.io/se_project_todo-app/)]
