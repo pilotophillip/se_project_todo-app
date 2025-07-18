@@ -27,7 +27,10 @@ The project uses ES6 classes (`Todo` and `FormValidator`) to modularize the code
 - **Form validation**: Implemented using a reusable `FormValidator` class to ensure robust input handling.
 - **Live Server**: Used during development to support JS modules and live reload.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32f184f (updatedTODOAPP)
 ---
 
 ## Deployment

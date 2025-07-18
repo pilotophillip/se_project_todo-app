@@ -69,6 +69,7 @@ addTodoCloseBtn.addEventListener("click", () => {
 
 addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
+
   const name = evt.target.name.value;
   const dateInput = evt.target.date.value;
 
@@ -80,7 +81,10 @@ addTodoForm.addEventListener("submit", (evt) => {
   const values = { name, date, id };
   const todo = generateTodo(values);
   todosList.append(todo);
+
   closeModal(addTodoPopup);
+  addTodoForm.reset(); // ✅ Clear the form
+  newTodoValidator.resetValidation(); // ✅ Reset errors & disable submit
 });
 
 initialTodos.forEach((item) => {
