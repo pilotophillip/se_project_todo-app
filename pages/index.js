@@ -34,10 +34,10 @@ const handleEscClose = (evt) => {
   }
 };
 
-const openModal = (modal) => {
-  modal.classList.add("popup_visible");
-  document.addEventListener("keydown", handleEscClose);
-};
+//const openModal = (modal) => {
+//  modal.classList.add("popup_visible");
+//  document.addEventListener("keydown", handleEscClose);
+//};
 
 const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
@@ -50,7 +50,7 @@ const generateTodo = (data) => {
 };
 
 addTodoButton.addEventListener("click", () => {
-  openModal(addTodoPopupEl);
+  addTodoPopup.open();
 });
 
 addTodoCloseBtn.addEventListener("click", () => {
