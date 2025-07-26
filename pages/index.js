@@ -39,6 +39,8 @@ const handleEscClose = (evt) => {
 //  document.addEventListener("keydown", handleEscClose);
 //};
 
+addTodoPopup.SetEventListeners();
+
 const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
   document.removeEventListener("keydown", handleEscClose);
@@ -51,10 +53,6 @@ const generateTodo = (data) => {
 
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
-});
-
-addTodoCloseBtn.addEventListener("click", () => {
-  closeModal(addTodoPopupEl);
 });
 
 addTodoForm.addEventListener("submit", (evt) => {
@@ -72,9 +70,7 @@ addTodoForm.addEventListener("submit", (evt) => {
   const todo = generateTodo(values);
   todosList.append(todo);
 
-  closeModal(addTodoPopupEl);
-  addTodoForm.reset();
-  newTodoValidator.resetValidation();
+  addTodoPopup.close();
 });
 
 //initialTodos.forEach((item) => {
