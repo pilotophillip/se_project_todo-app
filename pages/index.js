@@ -19,6 +19,8 @@ function handleDelete(completed) {
   if (completed) {
     todoCounter.updateCompleted(false);
   }
+  // ✅ Always decrement total when a todo is deleted
+  todoCounter.updateTotal(false);
 }
 
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
@@ -37,6 +39,9 @@ const addTodoPopup = new PopupWithForm({
 
     const todo = generateTodo(values);
     section.addItem(todo);
+
+    // ✅ Increment total when a new todo is added
+    todoCounter.updateTotal(true);
 
     addTodoPopup.close();
     addTodoForm.reset();

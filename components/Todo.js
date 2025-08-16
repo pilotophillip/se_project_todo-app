@@ -8,16 +8,25 @@ class Todo {
   }
 
   _setEventListeners() {
-    // Delete Checkbox
+    // Delete button
     this.todoDeleteBtn.addEventListener("click", () => {
-      this.handleDelete(this._completed);
-      this._remove();
-      // Toggle checkbox
-      this.todoCheckboxEl.addEventListener("change", () => {
-        this._toggleCompletion();
-        this._handleCheck(this._completed);
-      });
+      this._handleDelete(this._completed); // ✅ Fixed Problem 1
+      this._remove(); // ✅ Fixed Problem 2
     });
+
+    // Checkbox toggle (moved outside delete listener ✅ Fixed Problem 3)
+    this.todoCheckboxEl.addEventListener("change", () => {
+      this._toggleCompletion(); // ✅ Fixed Problem 4
+      this._handleCheck(this._completed);
+    });
+  }
+
+  _toggleCompletion() {
+    this._completed = !this._completed; // ✅ Fixed Problem 4 (method added)
+  }
+
+  _remove() {
+    this._todoElement.remove(); // ✅ Fixed Problem 2 (method added)
   }
 
   generateCheckboxEl() {
@@ -36,7 +45,6 @@ class Todo {
     const todoNameEl = this._todoElement.querySelector(".todo__name");
     const todoDate = this._todoElement.querySelector(".todo__date");
 
-    // ✅ Assign these to instance so _setEventListeners can use them
     this.todoCheckboxEl = this._todoElement.querySelector(".todo__completed");
     this.todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
 
