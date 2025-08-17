@@ -74,10 +74,15 @@ class FormValidator {
   }
 
   resetValidation() {
+    // Reset the form fields
+    this._formEl.reset();
+
+    // Clear all validation error messages
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
 
+    // Reset button state
     this._toggleButtonState();
   }
 }

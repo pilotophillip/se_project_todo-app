@@ -8,8 +8,9 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import TodoCounter from "../components/TodoCounter.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
-const addTodoPopupEl = document.querySelector("#add-todo-popup");
-const addTodoForm = addTodoPopupEl.querySelector(".popup__form");
+
+// ✅ Improvement: access form directly by id from document.forms
+const addTodoForm = document.forms["add-todo-form"];
 
 function handleCheck(completed) {
   todoCounter.updateCompleted(completed);
@@ -37,29 +38,36 @@ const addTodoPopup = new PopupWithForm({
     const id = uuidv4();
     const values = { name, date, id };
 
-    const todo = generateTodo(values);
-    section.addItem(todo);
+    // ✅ Reuse renderTodo() instead of duplicating code
+    renderTodo(values);
 
     // ✅ Increment total when a new todo is added
     todoCounter.updateTotal(true);
 
     addTodoPopup.close();
-    addTodoForm.reset();
+
+    // ✅ Reset validation instead of manually resetting the form
+    newTodoValidator.resetValidation();
   },
 });
 
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
-  const todoElement = todo.getView();
-  return todoElement;
+  return todo.getView();
+};
+
+// ✅ New helper function to avoid duplicate code
+const renderTodo = (item) => {
+  const todo = generateTodo(item);
+  section.addItem(todo);
 };
 
 const section = new Section(
   {
     items: initialTodos,
     renderer: (item) => {
-      const todo = generateTodo(item);
-      section.addItem(todo);
+      // ✅ Reuse renderTodo here
+      renderTodo(item);
     },
   },
   ".todos__list"
